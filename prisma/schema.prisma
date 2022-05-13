@@ -11,3 +11,35 @@ datasource db {
   provider = "mysql" 
   url      = env("DATABASE_URL")
 }
+
+// Nuestro primer modelo servira para crear los productos.
+model Producto {
+  // El primer parametro de nuestros modelos siempre debe ser el id.
+  // id : Es el nombre de nuestro parametro.
+  // Int : Define que nuestro parametro es un entero.
+  // @id : Este es un helper que ayuda a definir que es un id.
+  // @default() : Nos ayuda a definir por defecto funciones para nuestro parametro.
+  // autoincrement() : Se encarga de incrementar automaticamente 
+    // cuando hay un nuevo elemento en nuestro modelo
+  id Int @id @default(autoincrement())
+  nombre String
+  precio Float
+  // Es recomendado solamente guardar el nombre de la imagen para
+    // que de esta manera nuestra base de datos no se llene facilmente.
+  image String?
+  // categoria : Es el nombre de nuestro parametro
+  // Categoria : Hace referencia a un modelo con el mismo nombre
+  // @relation : Significa que este parametro tomara una relacion con el model seleccionado
+  // fields : Sirve para señalar el campo que se relacionara
+  // references : Sirve para señalar al campo de la categoria a relacionar
+  categoria Categoria @relation( fields: [categoriaId], references: [id] )
+  categoriaId Int
+}
+
+model Categoria {
+  id Int @id @default(autoincrement())
+  nombre String
+  icono String
+  // De esta manera le decimos a nuestro model que es lo que recibnira gracias a la relacion.
+  productos Producto[]
+}
