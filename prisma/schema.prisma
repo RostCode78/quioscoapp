@@ -26,7 +26,7 @@ model Producto {
   precio Float
   // Es recomendado solamente guardar el nombre de la imagen para
     // que de esta manera nuestra base de datos no se llene facilmente.
-  image String?
+  imagen String?
   // categoria : Es el nombre de nuestro parametro
   // Categoria : Hace referencia a un modelo con el mismo nombre
   // @relation : Significa que este parametro tomara una relacion con el model seleccionado
@@ -40,6 +40,14 @@ model Categoria {
   id Int @id @default(autoincrement())
   nombre String
   icono String
-  // De esta manera le decimos a nuestro model que es lo que recibnira gracias a la relacion.
+  // De esta manera le decimos a nuestro model que es lo que recibira gracias a la relacion.
   productos Producto[]
+}
+
+model Orden {
+  id Int @id @default(autoincrement())
+  nombre String
+  fecha String
+  total Float
+  pedido Json
 }
