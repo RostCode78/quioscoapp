@@ -19,7 +19,7 @@ const QuioscoProvider = ({ children }) => {
     return ( 
         <QuioscoContext.Provider 
             value={{
-
+                categorias
             }}
         >
             { children } 

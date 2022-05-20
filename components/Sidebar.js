@@ -2,6 +2,8 @@ import Image from 'next/image';
 import useQuiosco from '../hooks/useQuiosco';
 
 const Sidebar = () => {
+    const { categorias } = useQuiosco();
+
     return (
         <>
             <Image
